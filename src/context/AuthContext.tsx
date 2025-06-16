@@ -8,7 +8,6 @@ import {
 } from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { onSnapshot, doc, setDoc, getDoc } from 'firebase/firestore';
-// import { Navigate } from 'react-router-dom';
 
 interface AuthContextType {
   user: User | null;
@@ -26,16 +25,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // const { user, loading } = useAuth();
-
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
-  //     setUser(user);
-  //     setLoading(false);
-  //   });
-
-  //   return unsubscribe;
-  // }, []);
+  
 
   useEffect(()=> {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
@@ -45,24 +35,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return unsubscribe;
   },[]);
 
-  // useEffect(() => {
-  //   if (loading || !user) return; // Don't run if still loading or not logged in
-
-  //   const timeout = setTimeout(()=> {
-  //       const unsubscribe = onSnapshot(doc(db, 'users', user.uid), (docSnap) => {
-  //         // console.log("User data:", docSnap.data());
-  //         if(docSnap.exists()){
-  //           console.log("User data: ",docSnap.data());
-  //         }
-  //         else{
-  //           console.log("no user document found in Firestore.");
-  //         }
-  //       });
-
-  //     return () => unsubscribe();
-  //   },300);
-  //   return () => clearTimeout(timeout);
-  // }, [user, loading]);
+  
 
 
   useEffect(() => {
@@ -94,18 +67,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [user, loading]);
 
 
-  // const signup = async (email: string, password: string) => {
-  //   await createUserWithEmailAndPassword(auth, email, password);
-  // };
-
-//   const signup = async (email: string, password: string) => {
-//   try {
-//     await createUserWithEmailAndPassword(auth, email, password);
-//   } catch (error: any) {
-//     console.error("Signup error:", error.message);
-//     throw error;
-//   }
-// };
+  
 
 const signup = async (email: string, password: string) =>{
   try{
@@ -125,9 +87,7 @@ const signup = async (email: string, password: string) =>{
   }
 } 
 
-  // const login = async (email: string, password: string) => {
-  //   await signInWithEmailAndPassword(auth, email, password);
-  // };
+ 
 
 
   const login = async (email: string, password: string) => {
